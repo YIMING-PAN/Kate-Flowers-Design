@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/***  HEADER LAYOUT 1  ***/
+    #heading.first-nav .logo-wrapper a {
+	padding: 80px 0 60px
+}
+/***  HEADER LAYOUT 2  ***/
+        
+    /***  HEADER LAYOUT 3  ***/
+    #heading.third-nav .logo-wrapper {
+	padding: 80px 0 80px
+}
+/***  HEADER LAYOUT 4  ***/
+    #heading.four-nav .logo-wrapper {
+	padding: 80px 0 80px
+}
+/***  HEADER LAYOUT 5  ***/
+    #heading.fifth-nav .logo-wrapper {
+	padding: 80px 0 80px
+}
+/***  MOBILE  ***/
+                
+    /***  SIDEBAR  ***/
+        
+    /***  FOOTER  ***/
+        
+    /***  WEBSITE BACKGROUND  ***/
+        
+    /***  CUSTOM FONTS  ***/
+    
+        /*** Global Font ***/
+        body, input, textarea, button, select, label {
+	font-family: Droid Serif;
+}
+/*** Heading ***/
+        article .content-title, .meta-article-header, .widget h1.widget-title, .footerwidget-title h3, .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6, article .content-meta, .line-heading, h1, h2, h3, h4, h5, h6, .category-header span {
+	font-family: Playfair Display;
+}
+/*** Menu ***/
+        #heading .navigation, #heading .mobile-menu, .second-footer .footer-nav {
+	font-family: Lato;
+}
+    
+    /***  CUSTOM CSS  ***/
+
+
+.nav-search .searchbox .container-inline .form-actions,
+.sidebar .block-search .form-actions,
+.notfoundsec .form-actions,
+.page-search .search-form .form-wrapper .form-submit{
+    display: none;
+}
+.page-search .search-form{
+    margin-top: 15px;
+}
+.subscribe-footer .form-type-textfield{
+    display: inline;
+}
+
+/** ------------------- paging ------------------------ **/
+.pager {
+    margin: 40px 0;
+    text-align: center;
+}
+.pager li{
+    display: inline;
+    font-size: 13px;
+    line-height: 1.2;
+    margin: 0 2px;
+    text-transform: capitalize;
+}
+.pager .pager-first,
+.pager .pager-last{
+    display: none;
+}
+.pager a {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    color: #959595;
+    display: inline-block;
+    padding: 7px 15px;
+}
+.pager .pager-current{
+    color: #A8A7A7;
+    border: none;
+    padding: 9px;
+}
+
+.related-post-bottom {
+    display: inline-block;
+    padding: 20px 0;
+}
+
+/* COMMENT FORM */
+#comments {
+    margin-top: 0px;
+}
+.comment-wrapper h2.title{
+    color: #2e2f34;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+#commentform .form-item-name{
+    float: left;
+    width: 48%;
+}
+#commentform .form-item-mail{
+    float: right;
+    width: 48%;
+}
+#commentform .form-item-homepage, #commentform .form-item-comment-body-und-0-value{
+    clear: both;
+}
+#commentform .form-actions{
+    margin-top: 20px;
+}
+
+/* SLIDER */
+.highlightslider .slider-excerpt .entry{
+    color: #fff;
+    font-size: 15px;
+    margin: 0;
+    padding-bottom: 40px;
+    padding-top: 10px;    
+}
+.highlightslider .slider-excerpt .entry p{
+    font-size: 15px;
+    padding: 0;
+    margin: 0
+}
+
+.tabs.primary li,
+.tabs.secondary li{
+    float: left;
+    margin: 0 10px 0 0;
+}
+.subscribe-footer h2{
+    font-size: 38px;
+    line-height: 1.8em;
+}
+
+.normal .post-container .main-post{
+    clear: both;
+}
+.search-results li {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1em;
+    padding: 0 0 20px;
+}
+.footerwidget .about-us-widget p {
+    margin: 10px 0 0;
+}
+
+/* RESPONSIVE */
+.about-us-widget {
+    text-align: center;
+}
+.about-us-widget > p {
+    text-align: left;
+}
+.jr-insta-thumb .jr_col_3 > li{
+    width: 32% !important;
+    text-align: center;
+}
+.jr-insta-thumb .jr_col_3 > li a{
+    display: inline-block;
+    max-width: 100%;
+}
