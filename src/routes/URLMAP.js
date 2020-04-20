@@ -1,1 +1,15 @@
 export const HOME_URL = "/";
+export const LOGIN_URL = "/login";
+export const FIND_CLEANERS_URL = "/find-cleaners";
+export const CLEANER_DETAILS_URL = "/details";
+export const TASK_URL = "/tasks";
+export const ACCOUNT_BASE_URL = "/account";
+export const ACCOUNT_DASHBOARD_URL = `${ACCOUNT_BASE_URL}/dashboard`;
+export const ACCOUT_PAYMENT_HISTORY_URL = `${ACCOUNT_BASE_URL}/payment-history`;
+export const ACCOUT_NOTIFICATIONS_URL = `${ACCOUNT_BASE_URL}/notifications`;
+export const ACCOUNT_PROFILE_URL = `${ACCOUNT_BASE_URL}/profile`;
+export const ACCOUNT_PASSWORD_URL = `${ACCOUNT_BASE_URL}/password`;
+export const ADD_TASK_OFFER_URL = "/make-an-offer";
+export const ASSIGN_TASK_URL = "/assign-task";
+export const VIEW_TASK_URL = "/view-tasks";
+export const CHAT_URL = "/chat";

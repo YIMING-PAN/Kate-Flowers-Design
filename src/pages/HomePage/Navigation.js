@@ -1,7 +1,11 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 import { handleVisible as handleVisibleAction } from "../../redux/actions/loginAction";
+import { Avatar, Typography } from "@material-ui/core";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import {
   isLoggedIn,
   removeToken,
@@ -9,8 +13,11 @@ import {
   removeRoleId,
   getRoleId,
 } from "../../utils/auth";
+import { reqGetCustomer } from "../../api/customer";
+import CreateProfile from "../CreateProfile/CreateProfile";
 import Button from "@material-ui/core/Button";
 import Login from "../Login/Login";
+import "./navigation.scss";
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -20,7 +27,15 @@ class Navigation extends React.Component {
       showModal: false,
       showModalExitWarning: false,
       userRoleId: "",
+      setLoading: false,
+      name: "",
+      avatar: "",
+      anchorEl: null,
     };
+  }
+
+  componentDidMount() {
+    this.updatePageData();
   }
 
   updateRegisterStatus = (isRegister) => {
@@ -35,10 +50,31 @@ class Navigation extends React.Component {
     this.setState({ showModalExitWarning: true });
   };
 
+  handleCloseModalExitWarning = () => {
+    this.setState({ showModalExitWarning: false });
+  };
+
+  handleExitEditing = () => {
+    this.setState({ showModal: false, showModalExitWarning: false });
+  };
+
   logout = () => {
     removeToken();
     removeUserId();
     removeRoleId();
+  };
+
+  updatePageData = async () => {
+    this.setState({ setLoading: true });
+    try {
+      await reqGetCustomer(getRoleId("customer")).then((res) => {
+        this.setState({ name: res.data.data.name });
+        this.setState({ avatar: res.data.data.avatar });
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    this.setState({ setLoading: false });
   };
 
   renderLogin = () => {
@@ -50,28 +86,98 @@ class Navigation extends React.Component {
     const customerId = getRoleId("customer");
     const tradieId = getRoleId("tradie");
     const userRoleId = customerId || tradieId;
+    const { name, avatar, setLoading, anchorEl } = this.state;
+
+    const StyledMenu = withStyles({
+      paper: {
+        border: "1px solid #d3d4d5",
+      },
+    })((props) => (
+      <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        {...props}
+      />
+    ));
+
+    const handleClick = (event) => {
+      this.setState({ anchorEl: event.currentTarget });
+    };
+
+    const handleClose = () => {
+      this.setState({ anchorEl: null });
+    };
+
     if (isLoggedIn()) {
+      console.log(setLoading);
       return (
         <>
-          <Link
-            to={currentPath}
-            className="nav-link"
-            onClick={() => this.logout()}
-          >
-            <Button variant="outlined" size="small" disableElevation>
-              Log out
-            </Button>
-          </Link>
+          {!setLoading ? (
+            <li class="first expanded menu-item menu-item-has-children">
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <div className="profile-div">
+                  <Avatar alt="Person" className={avatar} src={avatar} />
+                  <div className="profile-username">Hi, {name}</div>
+                </div>
+              </Button>
+              <StyledMenu
+                id="customized-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>
+                  <Link
+                    to={currentPath}
+                    className="nav-link"
+                    // onClick={() => this.logout()}
+                  >
+                    Account Setting
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link
+                    to={currentPath}
+                    className="nav-link"
+                    onClick={() => this.logout()}
+                  >
+                    Log out
+                  </Link>
+                </MenuItem>
+              </StyledMenu>
+            </li>
+          ) : (
+            <li class="first expanded menu-item menu-item-has-children">
+              Loading
+            </li>
+          )}
         </>
       );
     }
 
     return (
-      <Link className="nav-link" onClick={() => handleVisible(true)}>
-        <Button variant="outlined" size="small" disableElevation>
-          Log in/Register
-        </Button>
-      </Link>
+      <>
+        <li class="first expanded menu-item menu-item-has-children">
+          <Link className="nav-link" onClick={() => handleVisible(true)}>
+            <Button variant="outlined" size="small" disableElevation>
+              Log in/Register
+            </Button>
+          </Link>
+        </li>
+      </>
     );
   };
 
@@ -83,8 +189,21 @@ class Navigation extends React.Component {
 
     return (
       <Fragment>
+        {isRegister && (
+          <CreateProfile
+            showModal={showModal}
+            showModalExitWarning={showModalExitWarning}
+            handleShowModal={this.handleShowModal}
+            handleCloseModal={this.handleCloseModal}
+            handleCloseModalExitWarning={this.handleCloseModalExitWarning}
+            handleExitEditing={this.handleExitEditing}
+            updateRegisterStatus={this.updateRegisterStatus}
+            updatePageData={this.updatePageData}
+          />
+        )}
         {visible && (
           <Login
+            updatePageData={this.updatePageData}
             showModal={showModal}
             handleCloseModal={this.handleCloseModal}
             handleShowModal={this.handleShowModal}
@@ -321,9 +440,6 @@ class Navigation extends React.Component {
                               <a href="/">Shortcode</a>
                             </li>
                           </ul>
-                        </li>
-                        <li class="leaf menu-item">
-                          <a href="/">About</a>
                         </li>
                         <li class="last leaf menu-item">
                           <a href="/">Contact</a>

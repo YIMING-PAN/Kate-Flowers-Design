@@ -150,6 +150,7 @@ class Login extends Component {
       handleVisible,
       location: { pathname: currentPath },
       updateUserID,
+      updatePageData,
     } = this.props;
 
     this.setState({ err: {}, isLoading: true }, () => {
@@ -162,6 +163,7 @@ class Login extends Component {
             storeRoleId(role, roleId);
             const userRoleId = roleId;
             updateUserID({ userRoleId });
+            updatePageData();
 
             this.handleRedirect(redirectTo, role, currentPath);
             redirectTo && handleRedirect(""); // reset redirectTo
@@ -210,7 +212,7 @@ class Login extends Component {
 
   renderInput = () => {
     const inputTypes = this.state.switchToRegister
-      ? ["email", "password", "repeatPwd"]
+      ? ["username", "email", "password", "repeatPwd"]
       : ["email", "password"];
     return inputTypes.map((type) => (
       <LoginInput
@@ -298,17 +300,17 @@ class Login extends Component {
                     )}
                   </div>
                   <fieldset className="login-login-button-container">
-                    <Button fullWidth variant="outlined" disableElevation>
-                      <Link
-                        onClick={() => {
-                          switchToRegister
-                            ? this.handleRegister()
-                            : this.handleLogin();
-                        }}
-                      >
+                    <Link
+                      onClick={() => {
+                        switchToRegister
+                          ? this.handleRegister()
+                          : this.handleLogin();
+                      }}
+                    >
+                      <Button fullWidth variant="outlined" disableElevation>
                         {switchToRegister ? "Create your account" : "Log in"}
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   </fieldset>
                 </form>
 

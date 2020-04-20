@@ -1,0 +1,157 @@
+.profile-title {
+  img {
+    width: 50%;
+    padding-bottom: 4.5px;
+  }
+  font-size: 45px;
+  margin-block-end: 15px !important;
+  color: #535766;
+  text-align: center;
+}
+.profile-box {
+  background-color: #fff;
+  width: 650px;
+  position: relative;
+
+  .profile-box-container {
+    padding: 20px 10px;
+
+    .loading-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .profile-content {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .profile-content-button {
+      text-align: right;
+      margin-right: 20px;
+
+      button {
+        margin: 10px;
+        width: 15%;
+      }
+    }
+    .profile-item {
+      text-align: left;
+      margin-top: 15px;
+      margin-right: 15px;
+      display: inline-block;
+    }
+    .title {
+      margin-bottom: 45px;
+      font-size: 25px;
+    }
+    .MapsInput {
+      display: -webkit-box;
+    }
+    .profile-item-map {
+      display: inline-block;
+      margin: 17px;
+      margin-left: 26px;
+      width: 44px;
+    }
+  }
+}
+
+@media (min-width: 360px) {
+  .profile-button {
+    width: 100%;
+    display: inline-block;
+  }
+  .profile-facebook {
+    margin-right: 15px;
+  }
+  .register-button {
+    width: 49%;
+    display: inline-block;
+  }
+  .register-facebook {
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 400px) {
+  .profile-box {
+    display: inline-block;
+  }
+  .register-box {
+    display: inline-block;
+    width: 400px;
+  }
+  .forgot-password-box {
+    display: inline-block;
+    width: 400px;
+  }
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+}
+
+/* 
+	##Device = Laptops, Desktops
+	##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .profile-box {
+    height: 600px;
+    overflow: scroll;
+  }
+}
+
+/* 
+	##Device = Tablets, Ipads (portrait)
+	##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .profile-box {
+    height: 600px;
+    overflow: scroll;
+  }
+}
+
+/* 
+	##Device = Tablets, Ipads (landscape)
+	##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .profile-box {
+    height: 600px;
+    overflow: scroll;
+  }
+}
+
+/* 
+	##Device = Low Resolution Tablets, Mobiles (Landscape)
+	##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .profile-box {
+    height: 600px;
+    overflow: scroll;
+  }
+}
+
+/* 
+	##Device = Most of the Smartphones Mobiles (Portrait)
+	##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .profile-box {
+    height: 600px;
+    overflow: scroll;
+  }
+}

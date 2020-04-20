@@ -1,0 +1,8 @@
+.profile-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-div .profile-username {
+  margin-left: 20px;
+}

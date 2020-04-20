@@ -1,0 +1,24 @@
+.basic-information-container {
+  width: 87%;
+  display: -webkit-inline-box;
+  margin: 40px;
+  text-align: left;
+}
+
+.details-container {
+  width: 87%;
+  display: -webkit-inline-box;
+  text-align: left;
+}
+
+.MuiTypography-gutterBottom {
+  text-transform: capitalize;
+}
+
+.all-finish {
+  text-align: center;
+  margin: 40px;
+  .redirect-container {
+    display: block;
+  }
+}
