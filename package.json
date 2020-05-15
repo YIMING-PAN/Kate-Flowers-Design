@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.50",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.2.0",
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
@@ -19,6 +21,7 @@
     "react-animated-modal": "^1.1.1",
     "react-avatar-editor": "^12.0.0-beta.0",
     "react-dom": "^16.13.1",
+    "react-load-script": "^0.0.6",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
@@ -26,6 +29,7 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.88.2",
     "validator": "^13.0.0"
   },
   "scripts": {

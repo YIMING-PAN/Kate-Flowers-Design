@@ -5,10 +5,12 @@ const LoginInput = (props) => {
   const { name, err, handleChange } = props;
 
   let placeholder;
+  let helperText;
   let type = name;
   switch (name) {
     case "username":
       placeholder = "Username";
+      helperText = "Please same as your Pinterest username";
       break;
     case "email":
       placeholder = "Your Email Address";
@@ -50,6 +52,7 @@ const LoginInput = (props) => {
         placeholder={placeholder}
         onChange={handleChange}
         variant="outlined"
+        helperText={helperText}
       />
     </div>
   );

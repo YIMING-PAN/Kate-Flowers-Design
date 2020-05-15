@@ -1,4 +1,6 @@
 import React from "react";
+import './inspirationboard.scss'
+
 
 function InspirationBoard() {
   return (
@@ -7,8 +9,8 @@ function InspirationBoard() {
         <div id="wrapper" class="full" data-boxed-bg="">
           <div class="block block-views">
             <div id="slider" class="highlightslider">
-              <div class="container">
-                <div>
+              <div class="inspiration-board-container">
+                <div className="inspiration-board">
                   <script src="https://www.powr.io/powr.js?platform=drupal"></script>
                   <div
                     class="powr-media-gallery"

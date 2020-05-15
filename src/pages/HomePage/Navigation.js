@@ -17,6 +17,7 @@ import { reqGetCustomer } from "../../api/customer";
 import CreateProfile from "../CreateProfile/CreateProfile";
 import Button from "@material-ui/core/Button";
 import Login from "../Login/Login";
+import FormDialog from "./Dialogs";
 import "./navigation.scss";
 
 class Navigation extends React.Component {
@@ -117,7 +118,6 @@ class Navigation extends React.Component {
     };
 
     if (isLoggedIn()) {
-      console.log(setLoading);
       return (
         <>
           {!setLoading ? (
@@ -141,11 +141,11 @@ class Navigation extends React.Component {
               >
                 <MenuItem onClick={handleClose}>
                   <Link
-                    to={currentPath}
+                    to={"/dashboard"}
                     className="nav-link"
                     // onClick={() => this.logout()}
                   >
-                    Account Setting
+                    Dashboard
                   </Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
@@ -177,6 +177,38 @@ class Navigation extends React.Component {
             </Button>
           </Link>
         </li>
+      </>
+    );
+  };
+
+  renderStylingBoard = () => {
+    const { setLoading } = this.state;
+    const initialUser = window.localStorage.getItem("user") || "";
+    if (isLoggedIn()) {
+      return (
+        <>
+          {!setLoading ? (
+            <li class="last leaf">login</li>
+          ) : (
+            <li class="first expanded menu-item menu-item-has-children">
+              Loading
+            </li>
+          )}
+        </>
+      );
+    }
+
+    return (
+      <>
+        {initialUser.length > 0 ? (
+          <li class="last leaf">
+            <a href="/stylingboard">Styling Board</a>
+          </li>
+        ) : (
+          <li class="last leaf">
+            <FormDialog />
+          </li>
+        )}
       </>
     );
   };
@@ -340,9 +372,7 @@ class Navigation extends React.Component {
                           </ul>
                         </li>
                         <li class="expanded menu-item menu-item-has-children">
-                          <a href="/" class="active">
-                            New Features
-                          </a>
+                          <a class="active">New Features</a>
                           <ul class="sub-menu">
                             <li class="first leaf">
                               <a href="/inspiration-board">Inspiration Board</a>
@@ -350,6 +380,7 @@ class Navigation extends React.Component {
                             <li class="last leaf">
                               <a href="/catalogue">Catalogue</a>
                             </li>
+                            {this.renderStylingBoard()}
                           </ul>
                         </li>
                         <li class="leaf">
@@ -450,7 +481,6 @@ class Navigation extends React.Component {
                       <div class="block block-views">
                         <ul class="socials">
                           {this.renderLogin()}
-
                           <li class="">
                             <a
                               title="Facebook"
@@ -485,7 +515,7 @@ class Navigation extends React.Component {
                             <a
                               title="Pinterest"
                               target="_blank"
-                              href="https://www.pinterest.com/drupal"
+                              href="https://www.pinterest.com/login"
                               class="social-pinterest"
                             >
                               <i class="fa fa-pinterest"></i>
