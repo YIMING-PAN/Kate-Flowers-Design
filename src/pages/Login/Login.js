@@ -136,7 +136,8 @@ class Login extends Component {
       return;
     }
 
-    this.props.history.replace(redirectTo ? redirectTo : currentPath);
+    this.props.history.replace(redirectTo ? redirectTo : "/inspiration-board");
+    window.location.reload();
   };
 
   /**
@@ -167,6 +168,7 @@ class Login extends Component {
 
             this.handleRedirect(redirectTo, role, currentPath);
             redirectTo && handleRedirect(""); // reset redirectTo
+            window.localStorage.setItem("email", email);
 
             handleVisible(false);
           });
@@ -197,6 +199,7 @@ class Login extends Component {
           this.setState({ isLoading: false }, () => {
             updateRegisterForm({ email, password, username });
             updateRegisterStatus(true);
+            window.localStorage.setItem("email", email);
             handleShowModal(true);
             handleVisible(false);
           });

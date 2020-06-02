@@ -1,0 +1,14 @@
+.css-e56m7-control {
+  background-color: #f2f7f9 !important;
+}
+.upload-button {
+  height: 50%;
+  position: relative;
+  margin-top: 20px;
+  width: 191px;
+}
+.upload-container {
+  display: block;
+  text-align: center;
+  width: 200px;
+}

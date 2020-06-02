@@ -59,18 +59,24 @@ class Navigation extends React.Component {
     this.setState({ showModal: false, showModalExitWarning: false });
   };
 
-  logout = () => {
-    removeToken();
-    removeUserId();
-    removeRoleId();
-  };
+  // logout = () => {
+  //   console.log(this.props.history);
+  //   removeToken();
+  //   removeUserId();
+  //   removeRoleId();
+  //   this.props.history.push("/inspiration-board");
+  //   localStorage.clear();
+  // };
 
   updatePageData = async () => {
     this.setState({ setLoading: true });
     try {
       await reqGetCustomer(getRoleId("customer")).then((res) => {
+        console.log(res.data);
         this.setState({ name: res.data.data.name });
         this.setState({ avatar: res.data.data.avatar });
+        window.localStorage.setItem("user", res.data.data.name);
+        window.localStorage.setItem("adminCheck", res.data.data._id);
       });
     } catch (e) {
       console.log(e);
@@ -128,7 +134,6 @@ class Navigation extends React.Component {
                 onClick={handleClick}
               >
                 <div className="profile-div">
-                  <Avatar alt="Person" className={avatar} src={avatar} />
                   <div className="profile-username">Hi, {name}</div>
                 </div>
               </Button>
@@ -141,14 +146,14 @@ class Navigation extends React.Component {
               >
                 <MenuItem onClick={handleClose}>
                   <Link
-                    to={"/dashboard"}
+                    to={`/dashboard/${name}/stylingboard`}
                     className="nav-link"
                     // onClick={() => this.logout()}
                   >
                     Dashboard
                   </Link>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                {/* <MenuItem onClick={handleClose}>
                   <Link
                     to={currentPath}
                     className="nav-link"
@@ -156,7 +161,7 @@ class Navigation extends React.Component {
                   >
                     Log out
                   </Link>
-                </MenuItem>
+                </MenuItem> */}
               </StyledMenu>
             </li>
           ) : (
@@ -182,35 +187,61 @@ class Navigation extends React.Component {
   };
 
   renderStylingBoard = () => {
-    const { setLoading } = this.state;
+    const { setLoading, name } = this.state;
     const initialUser = window.localStorage.getItem("user") || "";
-    if (isLoggedIn()) {
+    if (!isLoggedIn()) {
       return (
         <>
-          {!setLoading ? (
-            <li class="last leaf">login</li>
+          {!setLoading && initialUser.length > 0 ? (
+            <li class="last leaf">
+              <Link
+                to={`/dashboard/${name}/stylingboard`}
+                className="nav-link"
+                // onClick={() => this.logout()}
+              >
+                Styling Board
+              </Link>
+            </li>
           ) : (
-            <li class="first expanded menu-item menu-item-has-children">
-              Loading
+            <li class="last leaf">
+              <FormDialog />
             </li>
           )}
         </>
       );
     }
 
-    return (
-      <>
-        {initialUser.length > 0 ? (
+    // return (
+    //   <>
+    //     {initialUser.length > 0 ? (
+    //       <li class="last leaf">
+    //         <a href="/stylingboard">Styling Board</a>
+    //       </li>
+    //     ) : (
+    //       <li class="last leaf">
+    //         <FormDialog />
+    //       </li>
+    //     )}
+    //   </>
+    // );
+  };
+
+  renderCatalogue = () => {
+    const { setLoading } = this.state;
+    const adminCheck = window.localStorage.getItem("adminCheck") || "";
+    if (
+      isLoggedIn() &&
+      !setLoading &&
+      adminCheck === "5ed6821dabbfb90022916970"
+    ) {
+      return (
+        <>
           <li class="last leaf">
-            <a href="/stylingboard">Styling Board</a>
+            <a href="/catalogue">Catalogue</a>
           </li>
-        ) : (
-          <li class="last leaf">
-            <FormDialog />
-          </li>
-        )}
-      </>
-    );
+        </>
+      );
+    }
   };
 
   render() {
@@ -377,9 +408,7 @@ class Navigation extends React.Component {
                             <li class="first leaf">
                               <a href="/inspiration-board">Inspiration Board</a>
                             </li>
-                            <li class="last leaf">
-                              <a href="/catalogue">Catalogue</a>
-                            </li>
+                            {this.renderCatalogue()}
                             {this.renderStylingBoard()}
                           </ul>
                         </li>

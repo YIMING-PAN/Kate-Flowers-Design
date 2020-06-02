@@ -12,7 +12,7 @@ const Routes = () => {
       <Route path="/" exact component={HomePage} />
       <Route path="/inspiration-board" exact component={InspirationBoard} />
       <Route path="/catalogue" exact component={Catalogue} />
-      <Route path="/dashboard" exact component={Dashboard} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route path="/stylingboard" exact component={StylingBoard} />
       <Redirect to="/" /> {/* NOT MATCH => REDIRECT TO HOMEPAGE */}
     </Switch>
