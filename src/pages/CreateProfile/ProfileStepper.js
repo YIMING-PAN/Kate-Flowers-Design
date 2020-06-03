@@ -150,6 +150,7 @@ function ProfileStepper(props) {
 
   const closeModel = () => {
     handleShowModal(false);
+    window.location.reload();
   };
 
   const addUser = async (roleId) => {

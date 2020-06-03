@@ -72,7 +72,6 @@ class Navigation extends React.Component {
     this.setState({ setLoading: true });
     try {
       await reqGetCustomer(getRoleId("customer")).then((res) => {
-        console.log(res.data);
         this.setState({ name: res.data.data.name });
         this.setState({ avatar: res.data.data.avatar });
         window.localStorage.setItem("user", res.data.data.name);
@@ -195,7 +194,7 @@ class Navigation extends React.Component {
           {!setLoading && initialUser.length > 0 ? (
             <li class="last leaf">
               <Link
-                to={`/dashboard/${name}/stylingboard`}
+                to={`/stylingboard`}
                 className="nav-link"
                 // onClick={() => this.logout()}
               >
