@@ -32,7 +32,6 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    window.location.reload();
     this.updatePageData();
   }
 
