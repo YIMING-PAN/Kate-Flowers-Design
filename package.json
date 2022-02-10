@@ -17,7 +17,7 @@
     "emailjs-com": "^2.4.1",
     "jsonwebtoken": "^8.5.1",
     "lodash.throttle": "^4.1.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-animated-modal": "^1.1.1",
     "react-avatar-editor": "^12.0.0-beta.0",
